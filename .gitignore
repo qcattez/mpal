@@ -44,3 +44,5 @@ erd.pdf
 # Couverture de tests
 coverage
 
+# Dump BDD
+*.pgsql
