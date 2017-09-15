@@ -409,6 +409,10 @@ describe Projet do
         expect(projet.invitations.count).to eq(1)
         expect(projet.contacted_operateur).to eq(operateur)
       end
+
+      it "retourne une erreur si l'opérateur est nil" do
+        expect{ projet.contact_operateur! nil }.to raise_error "Operateur cannot be nil"
+      end
     end
 
     context "avec des opérateurs recommandés par un PRIS" do
@@ -488,6 +492,10 @@ describe Projet do
         expect(projet.invitations.count).to eq(1)
         expect(projet.invited_pris).to eq(pris)
       end
+
+      it "retourne une erreur si le PRIS est nil" do
+        expect{ projet.invite_pris! nil }.to raise_error "PRIS cannot be nil"
+      end
     end
 
     context "avec un PRIS invité auparavant" do
@@ -521,10 +529,14 @@ describe Projet do
       let(:projet)      { create :projet }
       let(:instructeur) { create :instructeur }
 
-      it "sélectionne l'intructeur" do
+      it "sélectionne l'instructeur" do
         projet.invite_instructeur! instructeur
         expect(projet.invitations.count).to   eq 1
         expect(projet.invited_instructeur).to eq instructeur
+      end
+
+      it "retourne une erreur si l'instructeur est nil" do
+        expect{ projet.invite_instructeur! nil }.to raise_error "Instructeur cannot be nil"
       end
     end
 

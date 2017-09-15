@@ -351,6 +351,8 @@ class Projet < ApplicationRecord
   end
 
   def contact_operateur!(operateur_to_contact)
+    raise "Operateur cannot be nil" unless operateur_to_contact
+
     previous_operateur = contacted_operateur
     return if previous_operateur == operateur_to_contact
 
@@ -374,6 +376,8 @@ class Projet < ApplicationRecord
   end
 
   def invite_pris!(pris)
+    raise "PRIS cannot be nil" unless pris
+
     previous_pris = invited_pris
     return if previous_pris == pris
 
@@ -384,6 +388,8 @@ class Projet < ApplicationRecord
   end
 
   def invite_instructeur!(instructeur)
+    raise "Instructeur cannot be nil" unless instructeur
+
     previous_instructeur = invited_instructeur
     return if previous_instructeur == instructeur
 
